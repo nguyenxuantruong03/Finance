@@ -7,7 +7,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Loader2, Plus } from "lucide-react";
 import { columns } from "./column";
 
-import { useBulkDeleteAccounts } from "@/features/accounts/api/use-delete-account";
+import { useBulkDeleteAccounts } from "@/features/accounts/api/use-bulk-delete";
 import { useNewAccount } from "@/features/hooks/use-new-account";
 import { useGetAccounts } from "@/features/accounts/api/use-get-accounts";
 

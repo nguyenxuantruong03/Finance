@@ -11,7 +11,7 @@ import { Loader2 } from "lucide-react";
 import { insertCategoriesSchema } from "@/db/schema";
 import { useConfirm } from "@/hooks/use-confirm";
 import { CategoryForm } from "@/features/categories/components/category-form";
-import { useOpenCategory } from "@/features/categories/hooks/use-open-categories";
+import { useOpenCategory } from "@/features/categories/hooks/use-open-category";
 import { useEditCategory } from "@/features/categories/api/use-edit-category";
 import { useDeleteCategory } from "@/features/categories/api/use-delete-category";
 import { useGetCategory } from "@/features/categories/api/use-get-category";
@@ -26,7 +26,7 @@ export const EditCategorySheet = () => {
   const { isOpen, onClose, id } = useOpenCategory();
   const [ConfirmDialog, confirm] = useConfirm(
     "Are you sure?",
-    "You are category to delete this transaction."
+    "You are about to delete this category."
   );
 
   const categoryQuery = useGetCategory(id);

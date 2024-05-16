@@ -4,15 +4,15 @@ import { toast } from "sonner";
 import { client } from "@/lib/hono";
 
 type ResponseType = InferRequestType<
-  (typeof client.api.categories)[":id"]["$delete"]
+  (typeof client.api.transactions)[":id"]["$delete"]
 >;
 
-export const useDeleteCategory = (id?: string) => {
+export const useDeleteTransaction = (id?: string) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation<ResponseType, Error>({
     mutationFn: async (json) => {
-      const response = await client.api.categories[":id"]["$delete"]({
+      const response = await client.api.transactions[":id"]["$delete"]({
         param: { id },
       });
       const responseData = await response.json();
@@ -26,14 +26,13 @@ export const useDeleteCategory = (id?: string) => {
       }
     },
     onSuccess: () => {
-      toast.success("Category delete successfully");
-      queryClient.invalidateQueries({ queryKey: ["category", { id }] });
-      queryClient.invalidateQueries({ queryKey: ["categories"] });
+      toast.success("Transaction delete successfully");
+      queryClient.invalidateQueries({ queryKey: ["transaction", { id }] });
       queryClient.invalidateQueries({ queryKey: ["transactions"] });
-      //TODO: Invalidate summary and transaction
+      //TODO: Invalidate summary
     },
     onError: (error) => {
-      toast.error("Failed to delete category: " + error.message);
+      toast.error("Failed to delete transaction: " + error.message);
     },
   });
   return mutation;
